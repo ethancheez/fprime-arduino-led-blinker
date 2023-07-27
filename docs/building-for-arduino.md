@@ -34,6 +34,33 @@ Then redirect the configuration path in your `led-blinker/settings.ini` by addin
 config_directory: ./config
 ```
 
+## Add Arduino Deployment
+
+In order to produce an executable to run the software, users need to create a deployment. A deployment is one software executable that contains the main entry point, and an F´ system topology. We will be using a custom deployment that autogenerates an Arduino deployment.
+
+First, add the line into `led-blinker/settings.ini`:
+```
+deployment_cookiecutter: https://github.com/ethancheez/fprime-arduino-deployment-cookiecutter.git
+```
+
+Create a new deployment in the `led-blinker` directory with:
+
+```shell
+#In led-blinker
+fprime-util new --deployment
+```
+
+This will ask for some input, respond with the following answers:
+```shell
+[INFO] Cookiecutter source: https://github.com/ethancheez/fprime-arduino-deployment-cookiecutter.git
+deployment_name [fprime-arduino-deployment]: LedBlinker
+[INFO] Found CMake file at 'led-blinker/project.cmake'
+Add component LedBlinker to led-blinker/project.cmake at end of file (yes/no)? yes
+```
+> Use the default response for any other questions asked.
+
+In order to check that the deployment was created successfully, the user can generate a build cache and build the deployment. This will generate and build the code for the current host system, not the remote embedded hardware allowing a local test during development. 
+
 ## Test Deployment
 
 Test the new teensy41 build by running:
