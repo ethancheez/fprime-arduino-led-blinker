@@ -38,7 +38,9 @@ module LedBlinker {
 
   instance rateGroup1: Svc.PassiveRateGroup base id 0x0200
 
-  instance commDriver: Arduino.StreamDriver base id 0x4000
+  # instance commDriver: Arduino.StreamDriver base id 0x4000
+
+  instance commDriver: Arduino.TcpClient base id 0x4000
 
   instance framer: Svc.Framer base id 0x4100
 

@@ -11,6 +11,7 @@
 // Necessary project-specified types
 #include <Fw/Types/MallocAllocator.hpp>
 #include <Svc/FramingProtocol/FprimeProtocol.hpp>
+#include <FprimeArduino.hpp>
 
 // Allows easy reference to objects in FPP/autocoder required namespaces
 using namespace LedBlinker;
@@ -70,8 +71,13 @@ void setupTopology(const TopologyState& state) {
     // Autocoded task kick-off (active components). Function provided by autocoder.
     startTasks(state);
 
+    // commDriver.configure(&Serial);
+
+    // Change the ssid, password, and host IP for your setup.
+    commDriver.setupWiFi("ssid", "password");
+    commDriver.configure("host ip", 50000); // i.e. 192.168.1.1
+
     rateDriver.configure(1);
-    commDriver.configure(&Serial);
     rateDriver.start();
 }
 
